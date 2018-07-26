@@ -33,7 +33,7 @@ get.vcfdata.func = function(params) {
     file.name = params$file.name
     sel.pos = params$pos
     # pulls the sample labels from the vcf
-    system(paste('zcat < ',vcf.file,' | grep CHROM -m 1 > ', paste(file.name,'_fields.txt',sep='')))
+    system(paste('gunzip -c < ',vcf.file,' | grep CHROM -m 1 > ', paste(file.name,'_fields.txt',sep=''))) #changed this JK
 	fields = scan(paste(file.name,'_fields.txt',sep=''),what='character')
 	system(paste("rm", paste(file.name,'_fields.txt',sep='')))
 	sample.fields = fields[-c(1:9)]
